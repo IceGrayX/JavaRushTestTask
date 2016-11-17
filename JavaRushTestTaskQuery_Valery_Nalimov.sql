@@ -1,0 +1,15 @@
+CREATE SCHEMA `test` DEFAULT CHARACTER SET utf8;
+
+CREATE TABLE `test`.`user` (
+`ID` INT(8) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`NAME` VARCHAR(25) NOT NULL,
+`AGE` INT NOT NULL,
+`IS_ADMIN` BIT(1) NOT NULL DEFAULT false,
+`CREATED_DATE` TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+
+INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Valery', '24');
+INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('IceGrayX', '24');
+INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Alena', '24');
+INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Bill', '61');
+INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Jack', '37');
+INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Dave', '33');
