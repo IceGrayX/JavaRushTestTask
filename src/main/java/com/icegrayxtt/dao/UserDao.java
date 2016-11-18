@@ -1,4 +1,4 @@
-package com.icegrayxtt.service;
+package com.icegrayxtt.dao;
 
 import com.icegrayxtt.model.User;
 
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by Валерий on 14.11.2016.
  */
-public interface UserService {
+public interface UserDao {
     public void addUser(User user);
     public void editUser(User user);
     public void deleteUser(Integer id);

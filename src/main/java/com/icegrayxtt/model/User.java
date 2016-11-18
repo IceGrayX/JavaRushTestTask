@@ -1,28 +1,34 @@
-package com.icegrayxtt.entity;
+package com.icegrayxtt.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * Created by Валерий on 14.11.2016.
+ */
+
 @Entity
 @Table(name = "user")
 public class User implements Serializable{
 
+    private static final long serialVersionUID = 3121L;
+
     @Id
-    @Column(name = "ID")
+    @Column
     @GeneratedValue
     private int id;
 
-    @Column(name = "NAME")
+    @Column
     private String name;
 
-    @Column(name = "AGE")
+    @Column
     private int age;
 
-    @Column(name = "IS_ADMIN")
+    @Column
     private boolean Admin;
 
-    @Column(name = "CREATED_DATE")
+    @Column
     private Date date;
 
     public int getId() {
@@ -63,16 +69,5 @@ public class User implements Serializable{
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", Admin=" + Admin +
-                ", date=" + date +
-                '}';
     }
 }

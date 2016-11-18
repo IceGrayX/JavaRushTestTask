@@ -1,29 +1,36 @@
 package com.icegrayxtt.controller;
 
-import com.icegrayxtt.entity.User;
+import com.icegrayxtt.model.User;
 import com.icegrayxtt.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Created by Валерий on 13.11.2016.
+ */
+
 @Controller
 public class UserController {
-
     int offset = 0;
     int num = 3;
     public static int count = 0;
-    public static Model model1;
 
-
-    @Resource(name = "userService")
+    @Autowired
     private UserService userService;
+
+//    @Autowired(required = true)
+//    @Qualifier(value = "userService")
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/")
     public String hello(){
@@ -73,30 +80,61 @@ public class UserController {
     @RequestMapping(value = "/users/add", method = RequestMethod.POST)
     public String add(@ModelAttribute("userAttribute") User user) {
         user.setDate(new Date());
-        userService.add(user);
+        userService.addUser(user);
         return "addedpage";
     }
 
     @RequestMapping(value = "/users/delete", method = RequestMethod.GET)
     public String delete(@RequestParam(value="id", required=true) Integer id, Model model) {
-        userService.delete(id);
+        userService.deleteUser(id);
         model.addAttribute("id", id);
         return "deletedpage";
     }
 
     @RequestMapping(value = "/users/edit", method = RequestMethod.GET)
     public String getEdit(@RequestParam(value="id", required=true) Integer id, Model model) {
-        model.addAttribute("userAttribute", userService.get(id));
+        model.addAttribute("userAttribute", userService.getUser(id));
         return "editpage";
     }
 
     @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
     public String saveEdit(@ModelAttribute("userAttribute") User user, @RequestParam(value="id", required=true) Integer id, Model model) {
         user.setId(id);
-        userService.edit(user);
+        userService.editUser(user);
         model.addAttribute("id", id);
         return "editedpage";
     }
+
+    /*    @RequestMapping(value = "/users/edit/{id}", method = RequestMethod.GET)
+    public String getEdit(@PathVariable("id") Integer id, ModelMap modelMap) {
+        modelMap.put("userAttribute", userService.getUser(id));
+        return "editpage";
+    }
+
+    @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
+    public String getEdit(@ModelAttribute("userAttribute") User user) {
+        userService.editUser(user);
+        return "editedpage";
+    }*/
+
+    /*сделать через модельивью*/
+
+/*    @RequestMapping(value = "/users/edit/{id}", method = RequestMethod.GET)
+    public ModelAndView getEdit(@PathVariable Integer id){
+        ModelAndView modelAndView = new ModelAndView("editpage");
+        User user = userService.getUser(id);
+        modelAndView.addObject("userAttribute", user);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/users/edit/{id}", method = RequestMethod.POST)
+    public ModelAndView editingUser(@ModelAttribute User user, @PathVariable Integer id){
+        ModelAndView modelAndView = new ModelAndView("editedpage");
+        userService.editUser(user);
+        modelAndView.addObject("id", id);
+
+        return modelAndView;
+    }*/
 
     @RequestMapping(value = "/users/filter", method = RequestMethod.GET)
     public String getFilter(Model model) {
@@ -110,5 +148,4 @@ public class UserController {
         model.addAttribute("users", users);
         return "filterpage";
     }
-
 }

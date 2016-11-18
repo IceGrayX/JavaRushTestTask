@@ -14,7 +14,7 @@
 <h1>Edit user</h1>
 <c:url var="saveUrl" value="/users/edit?id=${userAttribute.id}"/>
 
-<form:form modelAttribute="userAttribute" method="POST" action="${saveUrl}">
+<form:form method="POST" commandName="userAttribute" action="${saveUrl}">
     <table>
         <tr>
             <td><form:label path="id">ID:</form:label></td>

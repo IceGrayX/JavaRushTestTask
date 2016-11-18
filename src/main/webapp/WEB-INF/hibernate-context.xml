@@ -14,8 +14,8 @@
     <context:property-placeholder location="WEB-INF/mvc-dispatcher.properties"/>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
-
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+    <bean id="hibernate5AnnotatedSessionFactory"
+          class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
           p:dataSource-ref="dataSource"
           p:configLocation="${hibernate.config}"
           p:packagesToScan="com.icegrayxtt"/>
@@ -32,7 +32,30 @@
           p:maxStatements="50"
           p:minPoolSize="10"/>
 
-    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager"
-          p:sessionFactory-ref="sessionFactory"/>
+    <!--&lt;!&ndash;Hibernate&ndash;&gt;-->
+    <!--<bean id="sessionFactory"-->
+          <!--class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"-->
+          <!--p:configLocation="${hibernate.config}">-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+        <!--<property name="annotatedClasses">-->
+            <!--<list>-->
+                <!--<value>com.icegrayxtt.model.User</value>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--Dao and Service-->
+    <bean id="userDao" class="com.icegrayxtt.dao.UserDaoImpl">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+    <bean id="userService" class="com.icegrayxtt.service.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
 
 </beans>
