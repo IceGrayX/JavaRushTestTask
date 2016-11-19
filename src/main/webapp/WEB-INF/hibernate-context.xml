@@ -32,18 +32,6 @@
           p:maxStatements="50"
           p:minPoolSize="10"/>
 
-    <!--&lt;!&ndash;Hibernate&ndash;&gt;-->
-    <!--<bean id="sessionFactory"-->
-          <!--class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"-->
-          <!--p:configLocation="${hibernate.config}">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-        <!--<property name="annotatedClasses">-->
-            <!--<list>-->
-                <!--<value>com.icegrayxtt.model.User</value>-->
-            <!--</list>-->
-        <!--</property>-->
-    <!--</bean>-->
-
     <!--Dao and Service-->
     <bean id="userDao" class="com.icegrayxtt.dao.UserDaoImpl">
         <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>

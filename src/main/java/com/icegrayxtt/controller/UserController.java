@@ -26,8 +26,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-//    @Autowired(required = true)
-//    @Qualifier(value = "userService")
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
@@ -104,37 +102,6 @@ public class UserController {
         model.addAttribute("id", id);
         return "editedpage";
     }
-
-    /*    @RequestMapping(value = "/users/edit/{id}", method = RequestMethod.GET)
-    public String getEdit(@PathVariable("id") Integer id, ModelMap modelMap) {
-        modelMap.put("userAttribute", userService.getUser(id));
-        return "editpage";
-    }
-
-    @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
-    public String getEdit(@ModelAttribute("userAttribute") User user) {
-        userService.editUser(user);
-        return "editedpage";
-    }*/
-
-    /*сделать через модельивью*/
-
-/*    @RequestMapping(value = "/users/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView getEdit(@PathVariable Integer id){
-        ModelAndView modelAndView = new ModelAndView("editpage");
-        User user = userService.getUser(id);
-        modelAndView.addObject("userAttribute", user);
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/users/edit/{id}", method = RequestMethod.POST)
-    public ModelAndView editingUser(@ModelAttribute User user, @PathVariable Integer id){
-        ModelAndView modelAndView = new ModelAndView("editedpage");
-        userService.editUser(user);
-        modelAndView.addObject("id", id);
-
-        return modelAndView;
-    }*/
 
     @RequestMapping(value = "/users/filter", method = RequestMethod.GET)
     public String getFilter(Model model) {
