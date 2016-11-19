@@ -7,9 +7,9 @@ CREATE TABLE `test`.`user` (
 `IS_ADMIN` BIT(1) NOT NULL DEFAULT false,
 `CREATED_DATE` TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
 
-INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Valery', '24');
+INSERT INTO `test`.`user` (`NAME`, `AGE`, `IS_ADMIN`) VALUES ('Valery', '24', b'1');
 INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('IceGrayX', '24');
-INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Alena', '24');
+INSERT INTO `test`.`user` (`NAME`, `AGE`, `IS_ADMIN`) VALUES ('Alena', '24', b'1');
 INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Bill', '61');
 INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Jack', '37');
 INSERT INTO `test`.`user` (`NAME`, `AGE`) VALUES ('Dave', '33');

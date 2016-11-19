@@ -19,16 +19,16 @@ public class User implements Serializable{
     @GeneratedValue
     private int id;
 
-    @Column
+    @Column(name = "NAME")
     private String name;
 
-    @Column
+    @Column(name = "AGE")
     private int age;
 
-    @Column
+    @Column(name = "IS_ADMIN")
     private boolean Admin;
 
-    @Column
+    @Column(name = "CREATED_DATE")
     private Date date;
 
     public int getId() {

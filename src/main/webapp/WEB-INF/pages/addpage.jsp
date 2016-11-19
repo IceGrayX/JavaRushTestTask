@@ -17,6 +17,7 @@
 
 <form:form modelAttribute="userAttribute" method="POST" action="${saveUrl}">
     <table>
+        <tr><form:hidden path="id" value="${userAttribute.id}"/></tr>
         <tr>
             <td><form:label path="name">Name:</form:label></td>
             <td><form:input path="name"/></td>
